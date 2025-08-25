@@ -1,0 +1,21 @@
+[build-system]
+requires = ["scikit-build-core>=0.10", "pybind11>=2.11", "numpy>=1.22"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "numerical-methods-toolkit"
+version = "0.0.1"
+description = "Root finding, ODE solving, and linear algebra in C++ with Python bindings."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{ name="Your Name"}]
+license = { text = "MIT" }
+dependencies = ["numpy>=1.22"]
+
+[tool.scikit-build]
+wheel.packages = ["python/nmtk"]
+cmake.build-type = "Release"
+cmake.verbose = false
+
+[tool.scikit-build.cmake.define]
+NMTK_BUILD_PYBIND = "ON"
