@@ -1,6 +1,6 @@
 # Numerical Methods Toolkit
 
-A collection of algorithms for **root finding**, **ODE solving**, and **linear algebra** — implemented in **C++** (for speed) with **Python** bindings (for usability). Ideal for high-performance scientific computing, teaching, and quick experiments.
+A collection of algorithms for **root finding**, **ODE solving**, and **linear algebra**, implemented in **C++** (for speed) with **Python** bindings (for usability). Ideal for high-performance scientific computing, teaching, and quick experiments.
 
 > C++ core for performance • Python API for productivity
 
