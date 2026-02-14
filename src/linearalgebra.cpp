@@ -1,4 +1,5 @@
-#include "nmtk/linalg.hpp"
+#include "nmtk/linearalgebra.hpp"
+#include <cmath>
 
 namespace nmtk {
 
@@ -26,4 +27,4 @@ cg(const Eigen::MatrixXd& A, const Eigen::VectorXd& b,
   return {x, k, resid};
 }
 
-} // dahlia1384
+} // namespace nmtk

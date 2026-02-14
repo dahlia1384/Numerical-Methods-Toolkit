@@ -46,4 +46,4 @@ RootResult bisection(const std::function<double(double)>& f,
   R.root = mid; R.iters = opts.max_iters; return R;
 }
 
-} // dahlia1384
+} // namespace nmtk

@@ -1,0 +1,8 @@
+name: nmtk_frontend
+description: Interactive Dart frontend for Numerical Methods Toolkit.
+version: 0.1.0
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+
+dependencies:
+  collection: ^1.18.0
