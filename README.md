@@ -1,40 +1,62 @@
 # Numerical Methods Toolkit
 
-A collection of algorithms for **root finding**, **ODE solving**, and **linear algebra**, implemented in **C++** (for speed) with **Python** bindings (for usability). Ideal for high-performance scientific computing, teaching, and quick experiments.
+Numerical Methods Toolkit (NMTK) provides core numerical algorithms in **C++**, exposes them through **Python bindings**, and now includes a lightweight **Dart web frontend** for interactive demos.
 
-> C++ core for performance • Python API for productivity
+## What is included
 
----
-
-## Features
-
-- **Root Finding:** Bisection, Newton–Raphson, Secant (with bracketing helpers & derivative-free options)
-- **ODE Solvers:** Explicit Euler, RK2, classic RK4, adaptive RK45 (Dormand–Prince) with event hooks
-- **Linear Algebra:** Dense (LU, QR, Cholesky) and iterative (CG, GMRES) on lightweight matrix types
-- **Bindings:** Clean Python wrappers around the C++ core (via pybind11)
-- **Utilities:** Step-size control, stopping criteria, logging & timing macros
+- **Root finding**: Newton and Bisection
+- **ODE solving**: Scalar RK4 integrator
+- **Linear algebra**: Conjugate Gradient for SPD systems (Eigen-backed)
+- **Python API**: pybind11 module wrapping the C++ core
+- **Dart frontend**: browser UI to explore Newton and RK4 behavior interactively
 
 ---
 
-## Why C++ *and* Python?
+## Build the C++ core + Python module
 
-- **C++**: tight loops, SIMD-friendly code paths, predictable performance
-- **Python**: fast prototyping, notebooks, easy composability with NumPy / SciPy
-
----
-
-## Install
-
-### Clone & Build (recommended for now)
 ```bash
-git clone https://github.com/<you>/numerical-methods-toolkit.git
-cd numerical-methods-toolkit
-# Build C++ library
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build -j
-# (Optional) install system-wide
-# sudo cmake --install build
-
-# Build Python package (editable)
-pip install -U pip
 pip install -e .
+```
+
+### Quick Python smoke test
+
+```python
+import nmtk
+opts = nmtk.RootOptions()
+opts.max_iters = 50
+res = nmtk.newton(lambda x: x**3 - x - 2, lambda x: 3*x*x - 1, 1.5, opts)
+print(res.root, res.converged)
+```
+
+---
+
+## Dart frontend (web)
+
+The frontend is in `frontend/` and can be run as a static web app compiled with Dart.
+
+```bash
+cd frontend
+dart pub get
+dart compile js web/main.dart -O2 -o web/main.dart.js
+python -m http.server 8080
+# open http://localhost:8080/web/
+```
+
+It demonstrates:
+- Newton's method for `x^3 - x - 2 = 0`
+- RK4 for `y' = y - t^2 + 1, y(0)=0.5`
+
+---
+
+## Project layout
+
+- `include/nmtk/*.hpp`: C++ public headers
+- `src/*.cpp`: C++ implementations and pybind module
+- `python/nmtk/__init__.py`: Python package surface
+- `frontend/`: Dart web app
+
+## License
+
+MIT

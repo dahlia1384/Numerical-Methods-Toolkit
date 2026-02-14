@@ -4,7 +4,7 @@
 #include <pybind11/eigen.h>
 #include "nmtk/root.hpp"
 #include "nmtk/ode.hpp"
-#include "nmtk/linalg.hpp"
+#include "nmtk/linearalgebra.hpp"
 
 namespace py = pybind11;
 
