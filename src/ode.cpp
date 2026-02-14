@@ -23,4 +23,4 @@ ODEResult rk4(const std::function<double(double,double)>& f,
   return R;
 }
 
-} // dahlia1384
+} // namespace nmtk
